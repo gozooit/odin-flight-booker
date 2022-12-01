@@ -14,3 +14,31 @@
     </div>
   <% end %>
 </div>
+
+<br><br>
+
+<div class="search-result">
+  <% if @flights %>
+    <table>
+      <thead>
+        <tr>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Date</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @flights.each do |flight| %>
+        <tr>
+          <td><%= flight.departure_airport_id.code %></td>
+          <td><%= flight.arrival_airport_id.code %></td>
+          <td><%= flight.start %></td>
+          <td><%= flight.formatted_duration %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
