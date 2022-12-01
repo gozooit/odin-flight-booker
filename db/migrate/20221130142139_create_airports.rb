@@ -8,6 +8,6 @@ class CreateAirports < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :airports, :code
+    add_index :airports, :code, unique: true
   end
 end

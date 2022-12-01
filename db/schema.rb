@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_142139) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_airports_on_code"
+    t.index ["code"], name: "index_airports_on_code", unique: true
   end
 
 end
