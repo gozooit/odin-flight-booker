@@ -74,7 +74,7 @@ Airport.create(
     },
     {
       code: 'MEX',
-      name: 'Mexico City International Airportt',
+      name: 'Mexico City International Airport',
       city: 'Venustiano Carranza, Mexico City',
       country: 'Mexico'
     },
