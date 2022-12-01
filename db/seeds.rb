@@ -100,3 +100,23 @@ Airport.create(
 )
 
 p "Created #{Airport.count} airports."
+
+p 'Deleting flights.'
+
+Flight.delete_all
+
+100.times do
+  departure = rand(1..Airport.count)
+  arrival = rand(1..Airport.count)
+  arrival = rand(1..Airport.count) while departure == arrival
+  start = Time.now + rand(2_000_000)
+  duration = rand(1_800..18_000)
+  Flight.create(
+    departure_airport_id: departure,
+    arrival_airport_id: arrival,
+    start: start,
+    duration: duration
+  )
+end
+
+p "Created #{Flight.count} flights."
