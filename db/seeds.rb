@@ -5,3 +5,98 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+p 'Deleting airports.'
+
+Airport.delete_all
+
+Airport.create(
+  [
+    {
+      code: 'ATL',
+      name: 'Hartsfield-Jackson Atlanta International Airport',
+      city: 'Atlanta, Georgia',
+      country: 'United States'
+    },
+    {
+      code: 'DFW',
+      name: 'Dallas Fort Worth International Airport',
+      city: 'Dallas-Fort Worth, Texas',
+      country: 'United States'
+    },
+    {
+      code: 'DEN',
+      name: 'Denver International Airport',
+      city: 'Denver, Colorado',
+      country: 'United States'
+    },
+    {
+      code: 'ORD',
+      name: "O'Hare International Airport",
+      city: 'Chicago, Illinois',
+      country: 'United States'
+    },
+    {
+      code: 'LAX',
+      name: 'Los Angeles International Airport',
+      city: 'Los Angeles, California',
+      country: 'United States'
+    },
+    {
+      code: 'CLT',
+      name: 'Charlotte Douglas International Airport',
+      city: 'Charlotte, North Carolina',
+      country: 'United States'
+    },
+    {
+      code: 'MCO',
+      name: 'Orlando International Airport',
+      city: 'Orlando, Florida',
+      country: 'United States'
+    },
+    {
+      code: 'CAN',
+      name: 'Guangzhou Baiyun InChina ternational Airport',
+      city: 'Baiyun-Huadu, Guangzhou, Guangdong',
+      country: 'China'
+    },
+    {
+      code: 'CTU',
+      name: 'Chengdu Shuangliu International Airport',
+      city: 'Shuangliu-Wuhou, Chengdu, Sichuan',
+      country: 'China'
+    },
+    {
+      code: 'IST',
+      name: 'Istanbul Airportt',
+      city: 'Arnavutköy, Istanbul',
+      country: 'Turkey'
+    },
+    {
+      code: 'MEX',
+      name: 'Mexico City International Airportt',
+      city: 'Venustiano Carranza, Mexico City',
+      country: 'Mexico'
+    },
+    {
+      code: 'SVO',
+      name: 'Sheremetyevo International Airport',
+      city: 'Khimki, Moscow Oblast',
+      country: 'Russia'
+    },
+    {
+      code: 'DXB',
+      name: 'Dubai International Airport',
+      city: 'Garhoud, Dubai',
+      country: 'United Arab Emirates'
+    },
+    {
+      code: 'CDG',
+      name: 'Charles de Gaulle Airport',
+      city: 'Roissy-en-France, Île-de-France',
+      country: 'France'
+    }
+  ]
+)
+
+p "Created #{Airport.count} airports."
