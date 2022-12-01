@@ -1,0 +1,16 @@
+<h1>Search for a flight</h1>
+
+<div class="search-form">
+  <%= form_with(model: @flight, method: "get") do |f| %>
+    <div class="search-dropdown">
+      <%= f.collection_select(:departure_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select departure airport') %>
+      <%= f.collection_select(:arrival_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select arrival airport') %>
+      <%= f.collection_select(:start, Flight.select(:start).distinct.order(:start), :start, :start, include_blank: 'Date') %>
+      <%= f.select('nb_passenger', (1..4), include_blank: 'Number of passengers') %>
+    </div>
+    <br>
+    <div class="search-submit">
+      <%= f.submit('Search') %>
+    </div>
+  <% end %>
+</div>
