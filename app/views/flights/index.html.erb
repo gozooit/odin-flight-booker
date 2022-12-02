@@ -5,7 +5,7 @@
     <div class="search-dropdown">
       <%= f.collection_select(:departure_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select departure airport') %>
       <%= f.collection_select(:arrival_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select arrival airport') %>
-      <%= f.collection_select(:start, Flight.select(:start).distinct.order(:start), :start, :start, include_blank: 'Date') %>
+      <%= f.collection_select(:start, Flight.select(:start).distinct.order(:start), :start, :formatted_date, include_blank: 'Date') %>
       <%= f.select('nb_passenger', (1..4), include_blank: 'Number of passengers') %>
     </div>
     <br>
@@ -31,8 +31,8 @@
       <tbody>
         <% @flights.each do |flight| %>
         <tr>
-          <td><%= flight.departure_airport_id.code %></td>
-          <td><%= flight.arrival_airport_id.code %></td>
+          <td><%= flight.departure_airport.code %></td>
+          <td><%= flight.arrival_airport.code %></td>
           <td><%= flight.start %></td>
           <td><%= flight.formatted_duration %></td>
         </tr>

@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'flights#index'
 
-  resources :flight
+  resources :flights
 end
