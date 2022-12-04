@@ -7,7 +7,12 @@ class FlightsController < ApplicationController
     if params[:flight]
       # delete empty params
       params[:flight].delete_if { |k, v| v.empty? || k == :nb_passenger }
-      @flights = (flight_params.empty? ? Flight.all : Flight.where(flight_params)).includes(:departure_airport, :arrival_airport).order(:start).limit(100)
+      # params[:flight][:start] = params[:flight][:start].to_date.beginning_of_day..params[:flight][:start].to_date.end_of_day if params[:flight][:start]
+      params[:flight][:start] = params[:flight][:start].to_date
+      @flights = (flight_params.empty? ? Flight.all : Flight.where(flight_params))
+                 .includes(:departure_airport, :arrival_airport)
+                 .order(:start)
+                 .limit(100)
     end
   end
 

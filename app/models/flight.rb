@@ -13,4 +13,8 @@ class Flight < ApplicationRecord
   def formatted_date
     start.strftime('%Y/%m/%d')
   end
+
+  def day_range_date
+    (start.beginnig_of_day..start.end_of_day)
+  end
 end
