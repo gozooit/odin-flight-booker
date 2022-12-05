@@ -1,44 +1,37 @@
 <h1>Search for a flight</h1>
 
-<div class="search-form">
-  <%= form_with(model: @flight, method: "get") do |f| %>
-    <div class="search-dropdown">
-      <%= f.collection_select(:departure_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select departure airport') %>
-      <%= f.collection_select(:arrival_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select arrival airport') %>
-      <%= f.collection_select(:start, Flight.all.order(:start).collect { |f| f.start.to_date }.uniq, :to_s, :to_date, include_blank: 'Date') %>
-      <%= f.select('nb_passenger', (1..4), include_blank: 'Number of passengers') %>
-    </div>
-    <br>
-    <div class="search-submit">
-      <%= f.submit('Search') %>
-    </div>
-  <% end %>
-</div>
+<%= render "search-form", flight: @flight %>
 
 <br><br>
 
-<div class="search-result">
+<div class="result-form">
   <% if @flights %>
-    <table>
-      <thead>
-        <tr>
-          <th>Departure</th>
-          <th>Arrival</th>
-          <th>Date</th>
-          <th>Duration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @flights.each do |flight| %>
-        <tr>
-          <td><%= flight.departure_airport.code %></td>
-          <td><%= flight.arrival_airport.code %></td>
-          <td><%= flight.start %></td>
-          <td><%= flight.formatted_duration %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= form_with model: @flight, url: new_flight_path, method: "get" do |f| %>
+      <table>
+        <thead>
+          <tr>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Date</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @flights.each do |flight| %>
+          <tr>
+            <td><%= flight.departure_airport.code %></td>
+            <td><%= flight.arrival_airport.code %></td>
+            <td><%= flight.start %></td>
+            <td><%= flight.formatted_duration %></td>
+            <td><%= f.radio_button :flight, 'select' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="result-submit">
+        <%= f.submit('Select') %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
