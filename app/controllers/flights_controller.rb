@@ -33,6 +33,10 @@ class FlightsController < ApplicationController
   end
   # rubocop:enable Metrics
 
+  def new
+    @flight = Flight.new
+  end
+
   private
 
   def flight_params
