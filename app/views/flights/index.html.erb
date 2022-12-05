@@ -6,7 +6,7 @@
 
 <div class="result-form">
   <% if @flights %>
-    <%= form_with model: @flight, url: new_flight_path, method: "get" do |f| %>
+    <%= form_with url: new_booking_path, method: "get" do |f| %>
       <table>
         <thead>
           <tr>
@@ -23,7 +23,7 @@
             <td><%= flight.arrival_airport.code %></td>
             <td><%= flight.start %></td>
             <td><%= flight.formatted_duration %></td>
-            <td><%= f.radio_button :flight, 'select' %></td>
+            <td><%= f.radio_button :id, flight.id %></td>
           </tr>
           <% end %>
         </tbody>
