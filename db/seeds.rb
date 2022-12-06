@@ -68,7 +68,7 @@ Airport.create(
     },
     {
       code: 'IST',
-      name: 'Istanbul Airportt',
+      name: 'Istanbul Airport',
       city: 'Arnavutköy, Istanbul',
       country: 'Turkey'
     },
