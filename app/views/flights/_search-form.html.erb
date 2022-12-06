@@ -1,10 +1,14 @@
 <div class="search-form">
   <%= form_with model: flight, url: flights_path, method: "get" do |f| %>
     <div class="search-dropdown">
+      <%= f.label :departure_airport_id, 'From : '%>
       <%= f.collection_select(:departure_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select departure airport') %>
+      <%= f.label :arrival_airport_id, 'To : '%>
       <%= f.collection_select(:arrival_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select arrival airport') %>
+      <%= f.label :start, 'Date : '%>
       <%= f.collection_select(:start, Flight.all.order(:start).collect { |f| f.start.to_date }.uniq, :to_s, :to_date, include_blank: 'Date') %>
-      <%= f.select('nb_passenger', (1..4), include_blank: 'Number of passengers') %>
+      <%= f.label 'nb_passenger', 'Number of passengers : '%>
+      <%= f.select('nb_passenger', (1..4), selected: 1) %>
     </div>
     <br>
     <div class="search-submit">
