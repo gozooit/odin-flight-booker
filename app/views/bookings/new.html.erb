@@ -1,6 +1,22 @@
 <h1>Your selected flight</h1>
 
-<b>Departure airport :</b> <%= @flight.departure_airport.name %><br>
-<b>Arrival airport :</b> <%= @flight.arrival_airport.name %><br>
-<b>Start :</b> <%= @flight.start %><br>
-<b>Duration :</b> <%= @flight.formatted_duration %>
+<%= form_with model: @booking do |f|  %>
+  <b>Departure airport :</b> <%= @flight.departure_airport.name %><br>
+  <b>Arrival airport :</b> <%= @flight.arrival_airport.name %><br>
+  <b>Start :</b> <%= @flight.start %><br>
+  <b>Duration :</b> <%= @flight.formatted_duration %><br>
+  <b>Number of passengers:</b> <%= params[:nb_passenger] %><br><br>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%# <%= f.hidden_field :nb_passenger, value: params[:nb_passenger] %>
+  
+  <% params[:nb_passenger].to_i.times do |n| %>
+    <%= f.fields_for :passengers, Passenger.new do |passenger_f| %>
+      <%= passenger_f.label :name %>
+      <%= passenger_f.text_field :name %>
+      <%= passenger_f.label :email %>
+      <%= passenger_f.text_field :email %><br><br>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Confirm booking" %>
+<% end %>
