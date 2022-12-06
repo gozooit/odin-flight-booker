@@ -1,18 +1,26 @@
 <div class="search-form">
+  <%# Use form_with helper to create a form for searching flights %>
   <%= form_with model: flight, url: flights_path, method: "get" do |f| %>
     <div class="search-dropdown">
+      <%# Use f.label helper to create labels for the form fields %>
       <%= f.label :departure_airport_id, 'From : '%>
+      <%# Use f.collection_select helper to create a dropdown menu for selecting the departure airport %>
       <%= f.collection_select(:departure_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select departure airport') %>
       <%= f.label :arrival_airport_id, 'To : '%>
+      <%# Use f.collection_select helper to create a dropdown menu for selecting the arrival airport %>
       <%= f.collection_select(:arrival_airport_id, Airport.all.order(:name), :id, :name, include_blank: 'Select arrival airport') %>
       <%= f.label :start, 'Date : '%>
+      <%# Use f.collection_select helper to create a field for selecting the date of the flight %>
       <%= f.collection_select(:start, Flight.all.order(:start).collect { |f| f.start.to_date }.uniq, :to_s, :to_date, include_blank: 'Date') %>
       <%= f.label 'nb_passenger', 'Number of passengers : '%>
+      <%# Use f.select helper to create a dropdown menu for selecting the number of passengers %>
       <%= f.select('nb_passenger', (1..4), selected: 1) %>
     </div>
     <br>
     <div class="search-submit">
+      <%# Use f.submit helper to create a submit button for the form %>
       <%= f.submit('Search') %>
     </div>
   <% end %>
 </div>
+
