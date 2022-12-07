@@ -5,8 +5,6 @@ class Flight < ApplicationRecord
 
   attr_accessor :nb_passenger
 
-  scope :start_day, ->(start) { where start: start.all_day }
-
   def formatted_duration
     Time.at(duration).utc.strftime('%H:%M:%S')
   end
